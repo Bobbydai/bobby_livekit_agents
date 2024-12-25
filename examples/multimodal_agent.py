@@ -70,19 +70,21 @@ async def entrypoint(ctx: JobContext):
 
     # create a chat context with chat history
     chat_ctx = llm.ChatContext()
-    chat_ctx.append(text="I'm planning a trip to Paris next month.", role="user")
-    chat_ctx.append(
-        text="How exciting! Paris is a beautiful city. I'd be happy to suggest some must-visit places and help you plan your trip.",
-        role="assistant",
-    )
-    chat_ctx.append(text="What are the must-visit places in Paris?", role="user")
-    chat_ctx.append(
-        text="The must-visit places in Paris are the Eiffel Tower, Louvre Museum, Notre-Dame Cathedral, and Montmartre.",
-        role="assistant",
-    )
+    # chat_ctx.append(text="I'm planning a trip to Paris next month.", role="user")
+    # chat_ctx.append(
+    #     text="How exciting! Paris is a beautiful city. I'd be happy to suggest some must-visit places and help you plan your trip.",
+    #     role="assistant",
+    # )
+    # chat_ctx.append(text="What are the must-visit places in Paris?", role="user")
+    # chat_ctx.append(
+    #     text="The must-visit places in Paris are the Eiffel Tower, Louvre Museum, Notre-Dame Cathedral, and Montmartre.",
+    #     role="assistant",
+    # )
 
     agent = multimodal.MultimodalAgent(
         model=openai.realtime.RealtimeModel(
+            base_url="wss://aigcbest.top/v1",
+            api_key="sk-0vc6oFIta4zDcjqS714dEd3d50854183902b7f857dEc07F4",
             voice="alloy",
             temperature=0.8,
             instructions="You are a helpful assistant",
@@ -110,4 +112,12 @@ async def entrypoint(ctx: JobContext):
 
 
 if __name__ == "__main__":
-    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint, worker_type=WorkerType.ROOM))
+    cli.run_app(
+        WorkerOptions(
+            entrypoint_fnc=entrypoint,
+            worker_type=WorkerType.ROOM,
+            api_key="APIdmk2CKNSHv9k",
+            ws_url="wss://test-4toglnrx.livekit.cloud",
+            api_secret="Ebn4x7wfeAtSSvdn6dmuYQ7FQZ9aNfe4ux8XGOHgcxYC",
+        )
+    )
